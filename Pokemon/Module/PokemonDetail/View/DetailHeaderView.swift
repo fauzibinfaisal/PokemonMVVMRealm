@@ -9,7 +9,7 @@ import UIKit
 
 /// The header view for the detail view
 final class DetailHeaderView: UICollectionReusableView {
-
+    
     // MARK: Private properties
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(useAutolayout: true)
@@ -20,7 +20,7 @@ final class DetailHeaderView: UICollectionReusableView {
         typeLabel.numberOfLines = 4
         typeLabel.font = .systemFont(ofSize: 14)
         stack.addArrangedSubview(typeLabel)
-
+        
         let weightLabel = UILabel(useAutolayout: true)
         weightLabel.textAlignment = .center
         weightLabel.text = "Weight\n\n\(pokemon.weight.kilo)"
@@ -28,7 +28,7 @@ final class DetailHeaderView: UICollectionReusableView {
         weightLabel.textColor = isLight ? .black : .white
         weightLabel.font = typeLabel.font
         stack.addArrangedSubview(weightLabel)
-
+        
         let heightLabel = UILabel(useAutolayout: true)
         heightLabel.textAlignment = .center
         heightLabel.text = "Height\n\n\(pokemon.height.meter)"
@@ -38,10 +38,11 @@ final class DetailHeaderView: UICollectionReusableView {
         stack.addArrangedSubview(heightLabel)
         return stack
     }()
-
+    
     private let pokemon: PokemonDetails
     private let isLight: Bool
-
+    private let pokeballTapped: () -> Void?
+    
     // MARK: - Public properties
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(useAutolayout: true)
@@ -49,51 +50,59 @@ final class DetailHeaderView: UICollectionReusableView {
         return imageView
     }()
     
-    lazy var button: UIButton = {
-        let button = UIButton(useAutolayout: true)
-
-//        button.contentMode = .scaleAspectFit
+    lazy var button: PokeballButton = {
+        let button = PokeballButton(useAutolayout: true)
+        
+        //        button.contentMode = .scaleAspectFit
         return button
     }()
-
+    
     // MARK: - Init
-    init(frame: CGRect, pokemon: PokemonDetails, color: UIColor) {
+    init(frame: CGRect, pokemon: PokemonDetails, color: UIColor, pokeballTapped: @escaping () -> Void? ) {
         self.pokemon = pokemon
         self.isLight = color.isLight
-
+        self.pokeballTapped = pokeballTapped
+        
         super.init(frame: frame)
-
+        
         backgroundColor = .darkGrey
-
+        
         let fillerView = UIView(frame: UIScreen.main.bounds)
         fillerView.backgroundColor = color
         fillerView.frame.origin.y -= fillerView.frame.height - frame.height
-//        fillerView.roundedView(corners: [.bottomLeft, .bottomRight], radius: PokemonCell.CornerRadius.large)
+        //        fillerView.roundedView(corners: [.bottomLeft, .bottomRight], radius: PokemonCell.CornerRadius.large)
         addSubview(fillerView)
         
         let padding: CGFloat = 20.0
-        button.setImage(UIImage(named: "pokeball"), for: .normal)
+        button.captureHandler = { [weak self]  in
+            self?.pokeballTapped()
+        }
+           
+//        }
+        
+        //[Presentation] Attempt to present 'UIAlertController' on 'TabBarController'from 'NavigationController' which is already presenting 'NavigationController'
+        
         addSubview(button)
         NSLayoutConstraint.activate([
-//            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            //            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
-
+        
         addSubview(imageView)
         imageView.pinToSuperview(with: UIEdgeInsets(top: 0, left: 0, bottom: 56, right: 0), edges: .all)
-
-//        let padding: CGFloat = 20.0
+        
+        //        let padding: CGFloat = 20.0
         addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
         ])
-
+        
         ImageCache.default.loadImage(from: pokemon.sprite.url, item: pokemon) { [weak self] _, image in
             self?.imageView.image = image
         }
     }
-
+    
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }

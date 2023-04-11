@@ -12,6 +12,7 @@ extension DetailView {
     struct ViewModel {
         let pokemon: PokemonDetails
         let color: UIColor
+        var pokeballTapped: (() -> Void?)
     }
 }
 

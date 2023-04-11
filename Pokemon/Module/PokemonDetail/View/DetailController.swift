@@ -38,7 +38,19 @@ final class DetailController: ViewController<DetailView> {
     /// Init the `DetailController`
     /// - parameter viewModel: The given view model for the view
     override init(viewModel: DetailView.ViewModel) {
-        super.init(viewModel: viewModel)
+        var vm = viewModel
+        super.init(viewModel: vm)
+        
+        vm.pokeballTapped = {
+            let captureSucceeded = arc4random_uniform(2) == 0
+        
+            if captureSucceeded {
+                self.showBasicAlert(title: "Pokemon captured!", message: "You caught a wild pokemon!")
+
+            } else {
+                self.showBasicAlert(title: "Pokemon escaped!", message: "The wild pokemon broke free.")
+            }
+        }
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -47,7 +59,7 @@ final class DetailController: ViewController<DetailView> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.backgroundColor = .darkGrey
+        //        view.backgroundColor = .darkGrey
         title = viewModel.title
 
         navigationItem.leftBarButtonItem = closeButton

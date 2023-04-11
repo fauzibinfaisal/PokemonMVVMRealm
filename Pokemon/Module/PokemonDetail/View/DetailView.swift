@@ -44,7 +44,7 @@ final class DetailView: UIView, ViewModable, Interactable, TableViewable {
 //        tableView.backgroundColor = .darkGrey
 
         let frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300.0)
-        let header = DetailHeaderView(frame: frame, pokemon: viewModel.pokemon, color: viewModel.color)
+        let header = DetailHeaderView(frame: frame, pokemon: viewModel.pokemon, color: viewModel.color, pokeballTapped: viewModel.pokeballTapped)
         tableView.tableHeaderView = header
     }
 }

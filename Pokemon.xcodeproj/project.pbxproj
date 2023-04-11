@@ -84,8 +84,9 @@
 		EBA7019D29E1FC07000BC739 /* StatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA7019C29E1FC07000BC739 /* StatCell.swift */; };
 		EBA7019F29E1FF39000BC739 /* PokemonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA7019E29E1FF39000BC739 /* PokemonView.xib */; };
 		EBA701A129E1FFC6000BC739 /* MyPokemonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA701A029E1FFC6000BC739 /* MyPokemonView.xib */; };
-		EBA701A429E2063E000BC739 /* CatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA701A229E2063E000BC739 /* CatchCell.swift */; };
-		EBA701A529E2063E000BC739 /* CatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA701A329E2063E000BC739 /* CatchCell.xib */; };
+		EBA701A729E3B5AC000BC739 /* PokeballButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA701A629E3B5AC000BC739 /* PokeballButton.swift */; };
+		EBA701A929E4ABD9000BC739 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA701A829E4ABD9000BC739 /* DetailInteractor.swift */; };
+		EBA701AB29E4ABEB000BC739 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA701AA29E4ABEB000BC739 /* DetailRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,8 +187,9 @@
 		EBA7019C29E1FC07000BC739 /* StatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCell.swift; sourceTree = "<group>"; };
 		EBA7019E29E1FF39000BC739 /* PokemonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonView.xib; sourceTree = "<group>"; };
 		EBA701A029E1FFC6000BC739 /* MyPokemonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPokemonView.xib; sourceTree = "<group>"; };
-		EBA701A229E2063E000BC739 /* CatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchCell.swift; sourceTree = "<group>"; };
-		EBA701A329E2063E000BC739 /* CatchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatchCell.xib; sourceTree = "<group>"; };
+		EBA701A629E3B5AC000BC739 /* PokeballButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeballButton.swift; sourceTree = "<group>"; };
+		EBA701A829E4ABD9000BC739 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		EBA701AA29E4ABEB000BC739 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,8 +241,8 @@
 		EBA700A829E107AE000BC739 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
-				EBA7010329E110C6000BC739 /* ReusableView */,
 				EBA700D929E107C5000BC739 /* Core */,
+				EBA7010329E110C6000BC739 /* ReusableView */,
 				EBA700DA29E1080B000BC739 /* Module */,
 				EBA700DB29E1081A000BC739 /* Service */,
 				EBA700E129E109F1000BC739 /* Helper */,
@@ -456,6 +458,7 @@
 		EBA700EF29E10B71000BC739 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				EBA701A829E4ABD9000BC739 /* DetailInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 		EBA700F029E10B81000BC739 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				EBA701AA29E4ABEB000BC739 /* DetailRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -521,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				EBA7010429E110E4000BC739 /* PokemonCell.swift */,
+				EBA701A629E3B5AC000BC739 /* PokeballButton.swift */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -602,8 +607,6 @@
 			children = (
 				EBA7019829E1FBA6000BC739 /* DetailCell.swift */,
 				EBA7019C29E1FC07000BC739 /* StatCell.swift */,
-				EBA701A229E2063E000BC739 /* CatchCell.swift */,
-				EBA701A329E2063E000BC739 /* CatchCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -721,7 +724,6 @@
 				EBA701A129E1FFC6000BC739 /* MyPokemonView.xib in Resources */,
 				EBA7019F29E1FF39000BC739 /* PokemonView.xib in Resources */,
 				EBA7017D29E1F67A000BC739 /* DetailView.xib in Resources */,
-				EBA701A529E2063E000BC739 /* CatchCell.xib in Resources */,
 				EBA700B629E107AF000BC739 /* LaunchScreen.storyboard in Resources */,
 				EBA700B329E107AF000BC739 /* Assets.xcassets in Resources */,
 			);
@@ -750,7 +752,6 @@
 			files = (
 				EBA7013229E1EA2D000BC739 /* CollectionDataSrouce.swift in Sources */,
 				EBA7018A29E1F8CC000BC739 /* MyPokemonListInteractor.swift in Sources */,
-				EBA701A429E2063E000BC739 /* CatchCell.swift in Sources */,
 				EBA7016829E1EFB8000BC739 /* DetailRequest.swift in Sources */,
 				EBA7018229E1F780000BC739 /* DetailItem.swift in Sources */,
 				EBA7012A29E1E99E000BC739 /* Interactable.swift in Sources */,
@@ -760,6 +761,7 @@
 				EBA7011729E11824000BC739 /* CGFloat.swift in Sources */,
 				EBA7013029E1E9D6000BC739 /* Routable.swift in Sources */,
 				EBA7012829E1E981000BC739 /* ViewModable.swift in Sources */,
+				EBA701A929E4ABD9000BC739 /* DetailInteractor.swift in Sources */,
 				EBA7010229E11097000BC739 /* PokemonListView.swift in Sources */,
 				EBA7014129E1EAFB000BC739 /* Transition.swift in Sources */,
 				EBA7019D29E1FC07000BC739 /* StatCell.swift in Sources */,
@@ -803,6 +805,7 @@
 				EBA700AC29E107AE000BC739 /* SceneDelegate.swift in Sources */,
 				EBA7012129E1E7F2000BC739 /* UITableView.swift in Sources */,
 				EBA7014529E1EB2D000BC739 /* ImageView.swift in Sources */,
+				EBA701AB29E4ABEB000BC739 /* DetailRouter.swift in Sources */,
 				EBA7013429E1EA45000BC739 /* HorizontalPanGesture.swift in Sources */,
 				EBA7013629E1EA61000BC739 /* CollectionViewLayout.swift in Sources */,
 				EBA7016A29E1EFCC000BC739 /* Endpoint.swift in Sources */,
@@ -811,6 +814,7 @@
 				EBA7013D29E1EAC3000BC739 /* InteractableTransition.swift in Sources */,
 				EBA700FE29E11086000BC739 /* PokemonListVM.swift in Sources */,
 				EBA7014729E1EB48000BC739 /* Interaction.swift in Sources */,
+				EBA701A729E3B5AC000BC739 /* PokeballButton.swift in Sources */,
 				EBA7015629E1ED39000BC739 /* APIResponse.swift in Sources */,
 				EBA7018829E1F882000BC739 /* MyPokemonListRouter.swift in Sources */,
 				EBA7012E29E1E9C3000BC739 /* Identifiable.swift in Sources */,

@@ -39,3 +39,14 @@ extension UINavigationController {
         UINavigationBar.appearance().isTranslucent = false
     }
 }
+
+extension UINavigationController {
+    func showBasicAlert(title: String = "Warning", message: String? = nil, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (_ ) in
+            completion?()
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
