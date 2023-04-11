@@ -39,3 +39,17 @@ class ViewController<View>: UIViewController where View: ViewModable & Interacta
         navigationItem.backButtonTitle = ""
     }
 }
+
+
+extension ViewController {
+    
+    
+    func showBasicAlert(title: String = "Warning", message: String? = nil, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (_ ) in
+            completion?()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+}
