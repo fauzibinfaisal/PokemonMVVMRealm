@@ -16,8 +16,11 @@ final class DetailBuilder {
     /// - returns: A new navigation controller with the detail view controller as root controller
     static func build(fromContainer container: PokemonContainer) -> NavigationController {
         let color = container.cell.backgroundColor ?? .clear
-        let viewModel = DetailView.ViewModel(pokemon: container.pokemon, color: color, pokeballTapped: {})
-        let detailView = DetailController(viewModel: viewModel)
+        let router = DetailRouter()
+        let interactor = DetailInteractor(router: router)
+        let viewModel = DetailView.ViewModel(pokemon: container.pokemon, color: color)
+        let detailView = DetailController(viewModel: viewModel, interactor: interactor)
+        interactor.view = detailView
         let navigationController = NavigationController(rootViewController: detailView)
         let interaction = Transition.Interaction(viewController: navigationController, cell: container.cell, image: container.image)
         let transitionManager = Transition(interaction: interaction, cell: container.cell)
@@ -25,6 +28,7 @@ final class DetailBuilder {
         navigationController.transitionManager = transitionManager
         navigationController.modalPresentationStyle = .custom
         navigationController.setNavbarApp(color: color)
+        router.navigationController = navigationController
         return navigationController
     }
 }

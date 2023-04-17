@@ -25,7 +25,9 @@ final class DetailView: UIView, ViewModable, Interactable, TableViewable {
     var dataSource: UITableViewDiffableDataSource<Section, Item>!
     var tableView: UITableView { detailTableView }
 
-    enum Interaction {}
+    enum Interaction {
+        case catchPokemen(PokemonDetails)
+    }
 
     enum Section: Int {
         case stats, details
@@ -41,10 +43,9 @@ final class DetailView: UIView, ViewModable, Interactable, TableViewable {
     // MARK: - Public functions
     func setViewModel(_ viewModel: ViewModel) {
         dataSource = tableView.detailViewDataSource(viewModel: viewModel, delegate: self)
-//        tableView.backgroundColor = .darkGrey
 
         let frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 300.0)
-        let header = DetailHeaderView(frame: frame, pokemon: viewModel.pokemon, color: viewModel.color, pokeballTapped: viewModel.pokeballTapped)
+        let header = DetailHeaderView(frame: frame, pokemon: viewModel.pokemon, color: viewModel.color, pokeballTapped: {self.subject.send(.catchPokemen(viewModel.pokemon))})
         tableView.tableHeaderView = header
     }
 }

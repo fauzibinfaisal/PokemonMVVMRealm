@@ -8,8 +8,15 @@
 import UIKit
 import Combine
 
+protocol DetailViewProtocol: AnyObject {
+    var interaction: AnyPublisher<DetailView.Interaction, Never> { get }
+    var viewModel: DetailView.ViewModel { get }
+}
+
 /// The `DetailController` implementation
-final class DetailController: ViewController<DetailView> {
+final class DetailController: ViewController<DetailView>, DetailViewProtocol {
+    
+    private let interactor: DetailInteractor
 
     // MARK: Private properties
     private lazy var closeButton: UIBarButtonItem = {
@@ -37,20 +44,9 @@ final class DetailController: ViewController<DetailView> {
     // MARK: - Init
     /// Init the `DetailController`
     /// - parameter viewModel: The given view model for the view
-    override init(viewModel: DetailView.ViewModel) {
-        var vm = viewModel
-        super.init(viewModel: vm)
-        
-        vm.pokeballTapped = {
-            let captureSucceeded = arc4random_uniform(2) == 0
-        
-            if captureSucceeded {
-                self.showBasicAlert(title: "Pokemon captured!", message: "You caught a wild pokemon!")
-
-            } else {
-                self.showBasicAlert(title: "Pokemon escaped!", message: "The wild pokemon broke free.")
-            }
-        }
+    init(viewModel: DetailView.ViewModel, interactor: DetailInteractor) {
+        self.interactor = interactor
+        super.init(viewModel: viewModel)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -61,9 +57,10 @@ final class DetailController: ViewController<DetailView> {
 
         //        view.backgroundColor = .darkGrey
         title = viewModel.title
-
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = idButton
+        
+        interactor.loadMyPokemon(pokemon: viewModel.pokemon)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

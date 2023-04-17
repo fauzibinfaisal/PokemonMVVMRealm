@@ -34,12 +34,12 @@ class PokeballButton: UIButton {
         let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         shakeAnimation.duration = 0.1
         shakeAnimation.autoreverses = true
-        shakeAnimation.repeatCount = 5
+        shakeAnimation.repeatCount = 7
         shakeAnimation.fromValue = NSNumber(value: -0.2)
         shakeAnimation.toValue = NSNumber(value: 0.2)
         layer.add(shakeAnimation, forKey: "shake")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             self.captureHandler?()
 
         }
